@@ -1,0 +1,7 @@
+{
+  "bot": {
+    "token": "TOKEN",
+    "permission": 8,
+    "ver": "0.0.1"
+  }
+}
