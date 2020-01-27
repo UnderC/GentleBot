@@ -1,0 +1,10 @@
+{
+  "name": "gentlebot",
+  "version": "0.0.1",
+  "description": "A simple discord bot",
+  "main": "index.js",
+  "repository": "https://github.com/TanzenT-Lab/GentleBot",
+  "author": "TanzenT, UnderC",
+  "license": "GPLv3",
+  "private": false
+}
