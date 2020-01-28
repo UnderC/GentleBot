@@ -103,5 +103,6 @@ dist
 # TernJS port file
 .tern-port
 yarn.lock
-settings/index.json
 
+# Configure file
+settings/index.json
