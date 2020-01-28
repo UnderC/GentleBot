@@ -2,11 +2,15 @@ const Discord = require('discord.js')
 const config = require('./settings')
 const logger = require('./utils/logger')
 
+const commands = require('./commands')
+const events = require('./events')
+
 class GentleBot extends Discord.Client {
   constructor(_config) {
     super()
     this.config = _config
     this.logger = logger
+    this.commands = new Map()
 
     this.on('debug', async debugInfo => {
       this.logger.debug(debugInfo)
@@ -16,16 +20,22 @@ class GentleBot extends Discord.Client {
       this.logger.error(err.message)
     })
 
-    this.login(this.config.bot.token)
-
-    this.on('ready', async => {
-      this.logger.info(`Login Success!
-Bot id: ${this.user.id}
-Bot Name: ${this.user.username}
-Invite URL: https://discordapp.com/api/oauth2/authorize?client_id=${this.user.id}&permissions=${this.config.bot.permission}&scope=bot
+    this.on('ready', () => {
+      this.logger.info(`
+        Login Success!
+        Bot id: ${this.user.id}
+        Bot Name: ${this.user.username}
       `)
     })
+
+    Object.values(events).forEach(e => new e(this))
+    Object.values(commands).forEach(raw => new raw(this))
+  }
+
+  login (token) {
+    super.login(token || this.config.bot.token)
   }
 }
 
 const client = new GentleBot(config)
+client.login()
