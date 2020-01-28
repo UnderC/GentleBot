@@ -22,9 +22,9 @@ class GentleBot extends Discord.Client {
 
     this.on('ready', () => {
       this.logger.info(`
-        Login Success!
-        Bot id: ${this.user.id}
-        Bot Name: ${this.user.username}
+Login Success!
+Bot id: ${this.user.id}
+Bot Name: ${this.user.username}
       `)
     })
 
@@ -32,7 +32,7 @@ class GentleBot extends Discord.Client {
     Object.values(commands).forEach(raw => new raw(this))
   }
 
-  login (token) {
+  login(token) {
     super.login(token || this.config.bot.token)
   }
 }
